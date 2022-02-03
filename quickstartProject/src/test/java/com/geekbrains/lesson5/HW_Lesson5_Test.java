@@ -34,11 +34,16 @@ public class HW_Lesson5_Test {
         }
 
         @Test
-        void changeCityTest() {
+        void changeCityTest() throws InterruptedException {
         // выбираем город Екатеринбург
             driver.findElement(By.xpath("//button[@data-test='BUTTON CITY-SWITCHER']")).click();
             driver.findElement(By.xpath("//div[@data-test='DROPDOWN-CONTENT']"));
             driver.findElement(By.xpath("//div[@data-test='DROPDOWN-CONTENT']/descendant::li[.='Екатеринбург']/button")).click();
+
+            Thread.sleep(5000);
+
+            String t =  driver.findElement(By.xpath("//button[@data-test='BUTTON CITY-SWITCHER']//div[@DATA-TEST='RESTRICT-TEXT']/div/div")).getText();
+            Assertions.assertEquals("Екатеринбург", t);
         }
 
         @Test
